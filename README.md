@@ -62,7 +62,6 @@ The goal is to identify key factors influencing income levels and develop predic
 ```plaintext
 dataiku-ml-assignment/
 │
-├── data/                     # Folder for input datasets (train/test CSV files)
 ├── visuals/                  # Folder for generated plots and visualizations
 ├── scripts/                  # Python scripts for preprocessing, modeling, and evaluation
 │   ├── census_project.ipynb  # Main Script
