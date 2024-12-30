@@ -39,12 +39,12 @@ The goal is to identify key factors influencing income levels and develop predic
      - Random Forest
      - Logistic Regression
      - XGBoost
-   - Hyperparameter tuning for optimal performance.
-   - Visualization of performance metrics (AUC, precision-recall curves, confusion matrices).
+   - Hyperparameter tuning for optimal performance (XGBoost).
+   - Visualization of performance metrics (AUC, F-1 Score precision-recall curves, confusion matrices).
 
 6. **Model Comparison**:
-   - Side-by-side evaluation of models based on AUC and other metrics.
-   - Selection of the best model for final evaluation.
+   - Side-by-side evaluation of models based on AUC and F-1 Score and other metrics.
+   - Selection of the best model for final evaluation (XGBoost).
 
 ---
 
