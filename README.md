@@ -11,9 +11,9 @@ The goal is to identify key factors influencing income levels and develop predic
 ---
 
 ## Business Value
-- **Effective Resource Allocation**: Target regions with higher populations earning less than $50K for focused interventions.
-- **Address Systemic Challenges**: Provide insights into factors driving income disparities, such as education and job availability.
-- **Optimize Federal Support**: Ensure resources are directed to regions and populations with the greatest need.
+- **Resource Allocation**: Target regions with higher populations earning less than $50K for focused interventions.
+- **Policy Development & Economic Planning**: Ensure resources are directed to regions and populations with the greatest need.
+- **Addressing Inequality & Challenges**: Provide insights into factors driving income disparities, such as education and job availability.
 
 ---
 
