@@ -1,4 +1,4 @@
-# Dataiku Interview Assignment
+# Dataiku ML Assignment
 
 ## Overview
 This project addresses the task of predicting income levels (greater or less than $50K) based on demographic and socioeconomic data from the U.S. Census Bureau. The repository demonstrates a complete machine learning workflow, including data preprocessing, exploratory analysis, model development, and performance evaluation.
