@@ -11,7 +11,7 @@ The goal is to identify key factors influencing income levels and develop predic
 ---
 
 ## Business Value
-- **Resource Allocation**: Target regions with higher populations earning less than $50K for focused interventions.
+- **Resource Allocation**: Target regions for focused interventions.
 - **Policy Development & Economic Planning**: Ensure resources are directed to regions and populations with the greatest need.
 - **Addressing Inequality & Challenges**: Provide insights into factors driving income disparities, such as education and job availability.
 
@@ -20,8 +20,7 @@ The goal is to identify key factors influencing income levels and develop predic
 ## Features
 1. **Data Preprocessing**:
    - Handling missing values and duplicates.
-   - Encoding categorical variables.
-   - Feature scaling using Min-Max normalization.
+   - Encoding categorical, continous and ordinal variables.
 
 2. **Exploratory Data Analysis (EDA)**:
    - Distribution analysis of key features.
