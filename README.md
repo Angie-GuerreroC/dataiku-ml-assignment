@@ -37,7 +37,6 @@ The goal is to identify key factors influencing income levels and develop predic
 5. **Model Development and Evaluation**:
    - Training machine learning models: 
      - Random Forest
-     - Logistic Regression
      - XGBoost
    - Hyperparameter tuning for optimal performance (XGBoost).
    - Visualization of performance metrics (AUC, F-1 Score precision-recall curves, confusion matrices).
