@@ -1,0 +1,27 @@
+Model Classification Reports
+==================================================
+
+Random Forest Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.95      0.95      0.95     24365
+           1       0.52      0.48      0.50      2519
+
+    accuracy                           0.91     26884
+   macro avg       0.73      0.72      0.72     26884
+weighted avg       0.91      0.91      0.91     26884
+
+==================================================
+
+XGBoost Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.96      0.94      0.95     24365
+           1       0.52      0.61      0.56      2519
+
+    accuracy                           0.91     26884
+   macro avg       0.74      0.78      0.76     26884
+weighted avg       0.92      0.91      0.91     26884
+
+==================================================
+
