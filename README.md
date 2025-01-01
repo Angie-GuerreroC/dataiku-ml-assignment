@@ -20,7 +20,7 @@ The goal is to identify key factors influencing income levels and develop predic
 ## Features
 1. **Data Preprocessing**:
    - Handling missing values and duplicates.
-   - Encoding categorical, continous and ordinal variables.
+   - Encoding categorical, continuous, and ordinal variables.
 
 2. **Exploratory Data Analysis (EDA)**:
    - Distribution analysis of key features.
@@ -38,7 +38,7 @@ The goal is to identify key factors influencing income levels and develop predic
      - Random Forest
      - XGBoost
    - Hyperparameter tuning for optimal performance (XGBoost).
-   - Visualization of performance metrics (AUC, F-1 Score precision-recall curves, confusion matrices).
+   - Visualization of performance metrics (AUC, F-1 Score, precision-recall curves, confusion matrices).
 
 6. **Model Comparison**:
    - Side-by-side evaluation of models based on AUC and F-1 Score and other metrics.
@@ -63,6 +63,7 @@ dataiku-ml-assignment/
 ├── visuals/                  # Folder for generated plots and visualizations
 ├── scripts/                  # Python scripts for preprocessing, modeling, and evaluation
 │   ├── census_project.ipynb  # Main Script
+│   ├── census_eda.ipynb      # EDA
 │
 ├── README.md                 # Project README
 └── requirements.txt          # List of required Python packages
