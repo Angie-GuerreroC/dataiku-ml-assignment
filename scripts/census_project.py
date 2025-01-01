@@ -276,60 +276,75 @@ def train_xgboost(X_train_resampled, y_train_resampled):
 def evaluate_model(models, X_val, y_val, model_names):
     f1_scores = []
     
-    # Iterate over each model to calculate the F1 score
-    for model, model_name in zip(models, model_names):
-        y_pred = model.predict(X_val)
-        f1 = f1_score(y_val, y_pred)
-        f1_scores.append(f1)
-        
-        print(f"{model_name} F1-Score (Validation Set): {f1:.4f}")
+    # Open a text file to save the classification reports
+    report_path = f"{VISUALS_PATH}/model_classification_reports.txt"
+    with open(report_path, "w") as report_file:
+        report_file.write("Model Classification Reports\n")
+        report_file.write("="*50 + "\n\n")
 
-        # Confusion Matrix
-        cm = confusion_matrix(y_val, y_pred)
-        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Low', 'High'], yticklabels=['Low', 'High'])
-        plt.title(f'Confusion Matrix for {model_name}')
-        plt.xlabel('Predicted')
-        plt.ylabel('True')
+        # Iterate over each model to calculate metrics
+        for model, model_name in zip(models, model_names):
+            y_pred = model.predict(X_val)
+            f1 = f1_score(y_val, y_pred)
+            f1_scores.append(f1)
+            
+            print(f"{model_name} F1-Score (Validation Set): {f1:.4f}")
+
+            # Calculate and display precision, recall, and F1 score
+            report = classification_report(y_val, y_pred)
+            print(f"\n{model_name} Classification Report:\n", report)
+            
+            # Save the report to the file
+            report_file.write(f"{model_name} Classification Report:\n")
+            report_file.write(report + "\n")
+            report_file.write("="*50 + "\n\n")
+
+            # Confusion Matrix
+            cm = confusion_matrix(y_val, y_pred)
+            sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Low', 'High'], yticklabels=['Low', 'High'])
+            plt.title(f'Confusion Matrix for {model_name}')
+            plt.xlabel('Predicted')
+            plt.ylabel('True')
+            plt.tight_layout()
+            plt.savefig(f'{VISUALS_PATH}/{model_name}_confusion_matrix.png')
+            plt.close()
+            
+            # Precision-Recall Curve
+            y_probs = model.predict_proba(X_val)[:, 1]
+            precision, recall, _ = precision_recall_curve(y_val, y_probs)
+            pr_auc = auc(recall, precision)
+            
+            plt.plot(recall, precision, label=f'{model_name} (AUC = {pr_auc:.2f})')
+            plt.xlabel('Recall')
+            plt.ylabel('Precision')
+            plt.title(f'Precision-Recall Curve for {model_name}')
+            plt.legend(loc="best")
+            plt.tight_layout()
+            plt.savefig(f'{VISUALS_PATH}/{model_name}_precision_recall_curve.png')
+            plt.close()
+
+        if len(f1_scores) != len(model_names):
+            raise ValueError("Mismatch between the number of models and the number of F1 scores")
+
+        # Create a colormap based on the F1 scores for gradient coloring
+        cmap = plt.get_cmap("viridis")  # You can choose other colormaps like 'plasma', 'inferno', etc.
+        norm = plt.Normalize(min(f1_scores), max(f1_scores))  # Normalize the F1 scores to the colormap range
+
+        # Plot Model Comparison based on F1-Score with gradient coloring
+        plt.figure(figsize=(10, 6))
+        bars = plt.barh(model_names, f1_scores, color=cmap(norm(f1_scores)))
+
+        # Add a colorbar to show how the F1 scores correspond to the gradient
+        plt.colorbar(plt.cm.ScalarMappable(norm=norm, cmap=cmap), label='F1-Score')
+
+        # Labeling and title
+        plt.xlabel('F1-Score')
+        plt.title('Model Comparison based on F1-Score')
+
+        # Adjust layout and save the figure
         plt.tight_layout()
-        plt.savefig(f'{VISUALS_PATH}/{model_name}_confusion_matrix.png')
+        plt.savefig(f'{VISUALS_PATH}/model_comparison.png')
         plt.close()
-        
-        # Precision-Recall Curve
-        y_probs = model.predict_proba(X_val)[:, 1]
-        precision, recall, _ = precision_recall_curve(y_val, y_probs)
-        pr_auc = auc(recall, precision)
-        
-        plt.plot(recall, precision, label=f'{model_name} (AUC = {pr_auc:.2f})')
-        plt.xlabel('Recall')
-        plt.ylabel('Precision')
-        plt.title(f'Precision-Recall Curve for {model_name}')
-        plt.legend(loc="best")
-        plt.tight_layout()
-        plt.savefig(f'{VISUALS_PATH}/{model_name}_precision_recall_curve.png')
-        plt.close()
-
-    if len(f1_scores) != len(model_names):
-        raise ValueError("Mismatch between the number of models and the number of F1 scores")
-
-    # Create a colormap based on the F1 scores for gradient coloring
-    cmap = plt.get_cmap("viridis")  # You can choose other colormaps like 'plasma', 'inferno', etc.
-    norm = plt.Normalize(min(f1_scores), max(f1_scores))  # Normalize the F1 scores to the colormap range
-
-    # Plot Model Comparison based on F1-Score with gradient coloring
-    plt.figure(figsize=(10, 6))
-    bars = plt.barh(model_names, f1_scores, color=cmap(norm(f1_scores)))
-
-    # Add a colorbar to show how the F1 scores correspond to the gradient
-    plt.colorbar(plt.cm.ScalarMappable(norm=norm, cmap=cmap), label='F1-Score')
-
-    # Labeling and title
-    plt.xlabel('F1-Score')
-    plt.title('Model Comparison based on F1-Score')
-
-    # Adjust layout and save the figure
-    plt.tight_layout()
-    plt.savefig(f'{VISUALS_PATH}/model_comparison.png')
-    plt.close()
 
 # Hyperparameter tuning for XGBoost (using resampled training data)
 def tune_xgboost(X_train_resampled, y_train_resampled):
