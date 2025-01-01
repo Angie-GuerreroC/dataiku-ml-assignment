@@ -63,7 +63,6 @@ dataiku-ml-assignment/
 ├── visuals/                  # Folder for generated plots and visualizations
 ├── scripts/                  # Python scripts for preprocessing, modeling, and evaluation
 │   ├── census_project.ipynb  # Main Script
-│   ├── census_eda.ipynb      # EDA
 │
 ├── README.md                 # Project README
 └── requirements.txt          # List of required Python packages
