@@ -199,7 +199,7 @@ def feature_engineering(train_df, test_df):
     train_df = train_df.drop(['capital_gains', 'capital_losses'], axis=1)
     test_df = test_df.drop(['capital_gains', 'capital_losses'], axis=1)
     
-    # Convert income column to binary (0, 1) - 50000+ is 1, else 0
+    # Convert income to binary: 1 for income >= $50K, 0 for income < $50K
     train_df['income'] = train_df['income'].apply(lambda x: 1 if x.strip() == '50000+.' else 0)
     test_df['income'] = test_df['income'].apply(lambda x: 1 if x.strip() == '50000+.' else 0)
 
